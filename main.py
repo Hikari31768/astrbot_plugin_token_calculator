@@ -53,10 +53,9 @@ class TokenCalculator(Star):
     async def on_decorating_result(self, event: AstrMessageEvent):
         if self.cacuToken and self.llmResponsed:
             try:
-                result = event.get_result()
-                chain = result.chain
                 logger.info("%s", Plain(self.tokenMsg))
-                self.llmResponsed=False
+                # self.llmResponsed=False
             except:
                 raise RuntimeError("CacuToken插件在回复消息的时候出现错误")
+
 
