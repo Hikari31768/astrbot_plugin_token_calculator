@@ -7,7 +7,7 @@ from astrbot.core.message.components import Plain
 from astrbot.core.provider.entites import ProviderRequest, LLMResponse
 
 
-@register("TokenCalculator", "rinen0721", "计算并显示Token消耗的插件，部分provider可用", "1.0.0", "https://github.com/rinen0721/astrbot_plugin_token_calculator")
+@register("TokenCalculator", "rinen0721&Hikarin", "计算并显示Token消耗的插件，部分provider可用", "1.0.1", "https://github.com/Hikari31768/astrbot_plugin_token_calculator")
 class TokenCalculator(Star):
     cacuToken:bool =True
     tokenMsg:str =""
@@ -55,7 +55,8 @@ class TokenCalculator(Star):
             try:
                 result = event.get_result()
                 chain = result.chain
-                chain.append(Plain(self.tokenMsg))  # 在消息链的最后加上Token计算信息
+                logger.info("%s", Plain(self.tokenMsg))
                 self.llmResponsed=False
             except:
                 raise RuntimeError("CacuToken插件在回复消息的时候出现错误")
+
