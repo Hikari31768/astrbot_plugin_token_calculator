@@ -43,7 +43,7 @@ class TokenCalculator(Star):
                 completion_tokens=usage.completion_tokens
                 prompt_tokens=usage.prompt_tokens
                 total_tokens=usage.total_tokens
-                self.tokenMsg=f"(completion_tokens:{completion_tokens},prompt_tokens:{prompt_tokens},token总消耗:{total_tokens})"
+                self.tokenMsg=f"(输入:{completion_tokens},输出:{prompt_tokens},token总消耗:{total_tokens})"
                 self.llmResponsed=True
             except:
                 self.tokenMsg = "(TokenCalculator插件无法获取信息或者出现未知错误)"
@@ -53,9 +53,10 @@ class TokenCalculator(Star):
     async def on_decorating_result(self, event: AstrMessageEvent):
         if self.cacuToken and self.llmResponsed:
             try:
-                logger.info("%s", Plain(self.tokenMsg))
+                logger.info("%s", self.tokenMsg)
                 # self.llmResponsed=False
             except:
                 raise RuntimeError("CacuToken插件在回复消息的时候出现错误")
+
 
 
